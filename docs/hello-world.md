@@ -11,7 +11,7 @@ command that help in F´ development, and act as the canonical "Hello World" exa
 
 
 > [!TIP]
-> The source for this tutorial is located here: https://github.com/fprime-community/fprime-tutorial-hello-world. If you are stuck at some point during the tutorial, you may refer to that reference as the "solution".
+> The source for this tutorial is located here: [https://github.com/fprime-community/fprime-tutorial-hello-world](https://github.com/fprime-community/fprime-tutorial-hello-world). If you are stuck at some point during the tutorial, you may refer to that reference as the "solution".
 
 
 ### F´ Terminology
