@@ -9,11 +9,9 @@ permalink: /
 The Hello World tutorial is designed to teach new users the basics of F´ usage, instruct existing users on new
 command that help in F´ development, and act as the canonical "Hello World" example for F´.
 
-This tutorial walks through the following steps:
 
-1. [Creating an F´ Project](#1-creating-an-f-project)
-2. [Creating a Hello World Component](#2-creating-an-f-hello-world-component)
-3. [Integration and Testing with the HelloWorld Deployment](#3-integration-and-testing-with-the-helloworld-deployment)
+> [!TIP]
+> The source for this tutorial is located here: https://github.com/fprime-community/fprime-tutorial-hello-world. If you are stuck at some point during the tutorial, you may refer to that reference as the "solution".
 
 
 ### F´ Terminology
@@ -484,5 +482,3 @@ Congratulations, you have now set up a project, component, and deployment in F´
 
 This concludes the HelloWorld tutorial.
 
-> [!NOTE]
-> The source for this tutorial is located here: https://github.com/fprime-community/fprime-tutorial-hello-world. We welcome contributions!
