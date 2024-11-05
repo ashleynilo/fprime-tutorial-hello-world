@@ -136,8 +136,8 @@ Activate the virtual environment to use the F´ tool suite.
 # in MyProject/
 . fprime-venv/bin/activate
 ```
-!!! tip
-    Always remember to activate the virtual environment whenever you work with this F´  project.
+> [!TIP]
+> Always remember to activate the virtual environment whenever you work with this F´  project.
 
 ### Building the New F´ Project
 
@@ -150,11 +150,11 @@ fprime-util generate
 fprime-util build
 ```
 
-!!! note
-    `fprime-util generate` sets up the build environment for a project/deployment. It only needs to be done once.
+> [!NOTE]
+> `fprime-util generate` sets up the build environment for a project/deployment. It only needs to be done once.
 
-!!! note
-    `fprime-util build` can be sped up by building in parrallel on multiple cores, using the `-j <N>` option. For example, `fprime-util build -j16`
+> [!NOTE]
+> `fprime-util build` can be sped up by building in parrallel on multiple cores, using the `-j <N>` option. For example, `fprime-util build -j16`
 
 ### Project creation recap
 
@@ -169,8 +169,9 @@ within this new project's folder:
 # In: MyProject
 . fprime-venv/bin/activate
 ```
-!!! note
-    Use this command if your virtual environment is not already running. 
+
+> [!NOTE]
+> Use this command if your virtual environment is not already running. 
 
 ---
 
@@ -245,8 +246,8 @@ Add component Components/HelloWorld to Components/CMakeLists.txt at end of file 
 Generate implementation files (yes/no)? yes
 ```
 
-!!! note
-    For any other questions, select the default response.
+> [!NOTE]
+> For any other questions, select the default response.
 
 This will create a new component called "HelloWorld" in the "Components" namespace. This new component will be able to define commands, events, telemetry channels, and parameters.
 
@@ -266,8 +267,8 @@ This will show the following files:
 
 To build this component run `fprime-util build` in the current folder.
 
-!!! note
-    Any component in F´ can be built by navigating to the component's folder and running `fprime-util build`.
+> [!NOTE]
+> Any component in F´ can be built by navigating to the component's folder and running `fprime-util build`.
 
 ### Editing the Component Model
 
@@ -296,8 +297,9 @@ event Hello(
 @ A count of the number of greetings issued
 telemetry GreetingCount: U32
 ```
-!!! note
-    You should ensure to replace any existing command, event, and channel definitions with those supplied above but leave the 'Standard AC Ports' section untouched.
+
+> [!NOTE]
+> You should ensure to replace any existing command, event, and channel definitions with those supplied above but leave the 'Standard AC Ports' section untouched.
 
 With this step completed you can generate a basic implementation with the following command:
 
@@ -335,26 +337,16 @@ void HelloWorld:: SAY_HELLO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw
 }
 ```
 
-!!! note
-    We must also add the m_greetingCount member variable to the class defined in `HelloWorld.hpp` and the constructor defined in `HelloWorld.cpp`. This looks like:
-    
-    **HelloWorld.hpp: Adding New Member Variable**
-    ```c++
-    PRIVATE:
-        U32 m_greetingCount;
-    ```
-    
-    Should be added inside the `class` definition in `HelloWorld.hpp`.
 
-    **HelloWorld.cpp: Updating Constructor**
-    ```c++
-    HelloWorld:: HelloWorld(const char *const compName) : HelloWorldComponentBase(compName),
-        m_greetingCount(0)
-    {
-    }
-    ```
-    
-    Should be added to the `HelloWorld` constructor at the top of the file.
+We must also add the m_greetingCount member variable to the class defined in `HelloWorld.hpp` and the constructor defined in `HelloWorld.cpp`. This is done by adding the following code inside the `class` definition in `HelloWorld.hpp`:
+
+**HelloWorld.hpp: Adding New Member Variable**
+```c++
+PRIVATE:
+    U32 m_greetingCount = 0;
+```
+
+
 
 The component should build without errors by running `fprime-util build`.  Resolve any errors that occur before
 proceeding to the next section. Remember to always save before you build, unsaved changes will not be included in the build.
@@ -387,8 +379,8 @@ This command will ask for some input. Respond with the following answers:
 Deployment name [MyDeployment]: HelloWorldDeployment
 ```
 
-!!! note
-    For any other questions, select the default response.
+> [!NOTE]
+> For any other questions, select the default response.
 
 At this point, the `HelloWorldDeployment` has been created, but our `HelloWorld` component has not been added to the deployment.
 
@@ -415,8 +407,9 @@ Edit `HelloWorldDeployment/Top/topology.fpp`:
         instance ...
         instance helloWorld
 ```
-!!! warning
-    `...` are placeholders for other component names - do not remove or modify any other instances from the list.
+
+> [!WARNING]
+> `...` are placeholders for other component names - do not remove or modify any other instances from the list.
 
 `helloWorld` is the name of the component instance. Like variable names, component instance names should be descriptive
 and are typically named in camel or snake case.
@@ -437,11 +430,11 @@ Add to `MyDeploymment/Top/instances.fpp`:
     stack size Default.STACK_SIZE \
     priority 50
 ```
-!!! note
-    The user must ensure that the base id (0x0F00) does not conflict with any other base ids in the topology. 0x0F00 should be safe for deployments created with `fprime-util new --deployment`.
+> [!NOTE]
+> The user must ensure that the base id (0x0F00) does not conflict with any other base ids in the topology. 0x0F00 should be safe for deployments created with `fprime-util new --deployment`.
 
-!!! note
-    Make sure to use the same instance name (i.e. helloWorld) as defined in the instance definition just added to `topology.fpp`.
+> [!NOTE]
+> Make sure to use the same instance name (i.e. helloWorld) as defined in the instance definition just added to `topology.fpp`.
 
 
 Since this component has no custom ports nor does it require special configuration, our addition to the topology is
@@ -451,8 +444,8 @@ completed. The deployment can now be set up and built using the following comman
 # In: MyProject/HelloWorldDeployment
 fprime-util build -j4
 ```
-!!! warning
-    Resolve any errors that occur before continuing to the running section.
+> [!WARNING]
+> Resolve any errors that occur before continuing to the running section.
 
 ### Running With `fprime-gds`
 
@@ -475,8 +468,8 @@ Now that communication is verified, navigate to the "Commanding" tab and select 
 dropdown list. Type a greeting into the argument input box and click the button "Send Command". If the argument has
 validated successfully the command will send. Resolve all errors and ensure the command has sent.
 
-!!! note
-    Notice commands are instance specific. Had several HelloWorld component instances been used, there would be multiple `SAY_HELLO` listings, one for each component instance.
+> [!NOTE]
+> Notice commands are instance specific. Had several HelloWorld component instances been used, there would be multiple `SAY_HELLO` listings, one for each component instance.
 
 Now that the command has sent, navigate to the "Events" tab. Ensure that the event list contains the Hello event with
 the text entered when sending the command.
@@ -491,5 +484,5 @@ Congratulations, you have now set up a project, component, and deployment in F´
 
 This concludes the HelloWorld tutorial.
 
-> The source for this tutorial is located here: https://github.com/fprime-community/fprime-tutorial-hello-world.
-> We welcome contributions!
+> [!NOTE]
+> The source for this tutorial is located here: https://github.com/fprime-community/fprime-tutorial-hello-world. We welcome contributions!
